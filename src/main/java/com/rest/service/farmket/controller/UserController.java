@@ -3,8 +3,10 @@ package com.rest.service.farmket.controller;
 import com.rest.service.farmket.config.TokenProvider;
 import com.rest.service.farmket.model.AuthToken;
 import com.rest.service.farmket.model.LoginUser;
+import com.rest.service.farmket.model.ProductSheet;
 import com.rest.service.farmket.model.User;
 import com.rest.service.farmket.model.dto.UserDto;
+import com.rest.service.farmket.service.ProductService;
 import com.rest.service.farmket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException {
@@ -49,6 +54,11 @@ public class UserController {
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public User saveUser(@RequestBody UserDto user){
         return userService.save(user);
+    }
+    
+    @RequestMapping(value = "/saveProductSheet", method = RequestMethod.POST)
+    public String saveProductSheet(@RequestBody ProductSheet productSheet) {
+    	return productService.save(productSheet);
     }
 
 

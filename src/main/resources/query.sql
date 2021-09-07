@@ -4,5 +4,5 @@ create table user_roles (user_id bigint not null, role_id bigint not null, prima
 
 
 INSERT INTO role (id, description, name) VALUES (4, 'Farmer Role', 'FARMER');
-INSERT INTO role (id, description, name) VALUES (5, 'MArket role', 'MARKET');
+INSERT INTO role (id, description, name) VALUES (5, 'Market role', 'MARKET');
 
