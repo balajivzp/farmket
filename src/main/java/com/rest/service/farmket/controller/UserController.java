@@ -60,6 +60,13 @@ public class UserController {
     public String saveProductSheet(@RequestBody ProductSheet productSheet) {
     	return productService.save(productSheet);
     }
+    
+    @RequestMapping(value = "/getBusinessTitle/{username}", method = RequestMethod.POST )
+    public String  getBusinessTitle(@PathVariable String username) {
+    	User user  = new User();
+    	user = userService.findOne(username);
+    	return user.getBusinessTitle();
+    }
 
 
 
