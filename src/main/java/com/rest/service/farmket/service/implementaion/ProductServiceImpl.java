@@ -1,5 +1,7 @@
 package com.rest.service.farmket.service.implementaion;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,18 @@ public class ProductServiceImpl implements ProductService{
 		return "productSheet updated";
 		
 	}
+	
+	@Override
+	public ProductSheet getProductDetail(Long id)  {
+		Optional<ProductSheet> optional= productDao.findById(id);
+		ProductSheet productSheet = null;
+		if(optional.isPresent()) {
+			 productSheet = optional.get();
+			
+		}
+		return productSheet;
+		
+	}
+	
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.rest.service.farmket.model.ProductSheet;
 
 @Repository
-public interface ProductDao extends CrudRepository<ProductSheet, Integer>{
+public interface ProductDao extends CrudRepository<ProductSheet, Long>{
 	
 }

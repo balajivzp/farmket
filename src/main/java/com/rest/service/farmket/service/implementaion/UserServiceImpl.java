@@ -1,8 +1,11 @@
 package com.rest.service.farmket.service.implementaion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import com.rest.service.farmket.dao.UserDao;
 import com.rest.service.farmket.model.Role;
@@ -55,6 +58,34 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User findOne(String username) {
         return userDao.findByUsername(username);
+    }
+    
+    @Override
+    public List<User> getAllMarkets() {
+       Role role = roleService.findByName("MARKET");
+       return userDao.findByRoles(role);
+    }
+    
+    @Override
+    public Map<Long, String> getMarketDetails() {
+    	Role role = roleService.findByName("MARKET");
+    	List<User> userList = userDao.findByRoles(role);
+    	Map<Long, String> map = new HashMap<Long, String>();
+    	for(User user: userList) {
+    		map.put(user.getId(), user.getName());
+    	}
+    	return map;
+    }
+    
+    @Override
+    public String getMarketName(Long id) {
+    	Optional<User> userOptional = userDao.findById(id);
+    	String name = "";
+    	if(userOptional.isPresent()) {
+    		User user = userOptional.get();
+    		name = user.getName();
+    	}
+    	return name;
     }
 
     @Override

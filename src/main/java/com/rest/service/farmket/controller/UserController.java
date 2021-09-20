@@ -19,6 +19,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -55,17 +57,28 @@ public class UserController {
     public User saveUser(@RequestBody UserDto user){
         return userService.save(user);
     }
-    
-    @RequestMapping(value = "/saveProductSheet", method = RequestMethod.POST)
-    public String saveProductSheet(@RequestBody ProductSheet productSheet) {
-    	return productService.save(productSheet);
+    @RequestMapping(value="/getId/{username}", method = RequestMethod.POST)
+    public Long getId(@PathVariable String username) {
+    	User user  = new User();
+    	user = userService.findOne(username);
+    	return user.getId();
+    }
+    @RequestMapping(value="/getMarketName/{id}")
+    public String getMarketName(@PathVariable Long id) {
+    	return userService.getMarketName(id);
     }
     
-    @RequestMapping(value = "/getBusinessTitle/{username}", method = RequestMethod.POST )
+  
+    @RequestMapping(value = "/getUserRole/{username}", method = RequestMethod.POST )
     public String  getBusinessTitle(@PathVariable String username) {
     	User user  = new User();
     	user = userService.findOne(username);
     	return user.getBusinessTitle();
+    }
+    
+    @RequestMapping(value = "/getMarketList")
+    public List<User> getMarketDetails() {
+    	return userService.getAllMarkets();
     }
 
 

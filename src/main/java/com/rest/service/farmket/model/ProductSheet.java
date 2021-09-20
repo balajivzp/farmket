@@ -10,51 +10,51 @@ public class ProductSheet {
 	
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer prodId;
-	private Integer farmerId;
-	private Integer marketId;
+	private Long prodId;
+	private Long farmerId;
+	private Long marketId;
 	private String  productName;
 	private String  date;
-	private Integer productQuantity;
-	private String  status;
+	private Long quantity;
+	private Boolean  isApproved;
 	
 	protected ProductSheet() {
 		
 	}
-	
-	public ProductSheet(Integer prodId, Integer farmerId, Integer marketId, String productName, String date,
-			Integer productQuantity, String status) {
+
+	public ProductSheet(Long prodId, Long farmerId, Long marketId, String productName, String date, Long quantity,
+			Boolean isApproved) {
 		super();
 		this.prodId = prodId;
 		this.farmerId = farmerId;
 		this.marketId = marketId;
 		this.productName = productName;
 		this.date = date;
-		this.productQuantity = productQuantity;
-		this.status = status;
+		this.quantity = quantity;
+		this.isApproved = isApproved;
 	}
 
-	public Integer getProdId() {
+	public Long getProdId() {
 		return prodId;
 	}
 
-	public void setProdId(Integer prodId) {
+	public void setProdId(Long prodId) {
 		this.prodId = prodId;
 	}
 
-	public Integer getFarmerId() {
+	public Long getFarmerId() {
 		return farmerId;
 	}
 
-	public void setFarmerId(Integer farmerId) {
+	public void setFarmerId(Long farmerId) {
 		this.farmerId = farmerId;
 	}
 
-	public Integer getMarketId() {
+	public Long getMarketId() {
 		return marketId;
 	}
 
-	public void setMarketId(Integer marketId) {
+	public void setMarketId(Long marketId) {
 		this.marketId = marketId;
 	}
 
@@ -74,21 +74,22 @@ public class ProductSheet {
 		this.date = date;
 	}
 
-	public Integer getProductQuantity() {
-		return productQuantity;
+	public Long getQuantity() {
+		return quantity;
 	}
 
-	public void setProductQuantity(Integer productQuantity) {
-		this.productQuantity = productQuantity;
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
 	}
 
-	public String getStatus() {
-		return status;
+	public Boolean getIsApproved() {
+		return isApproved;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setIsApproved(Boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 	
 	
 }
+	
