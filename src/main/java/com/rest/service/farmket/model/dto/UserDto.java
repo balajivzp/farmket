@@ -8,6 +8,7 @@ public class UserDto {
     private String password;
     private String email;
     private String phone;
+    private String city;
     private String name;
     private String businessTitle;
 
@@ -51,6 +52,14 @@ public class UserDto {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public void setCity(String city) {
+    	this.city = city;
+    }
+    
+    public String getCity() {
+    	return this.city;
+    }
 
     public String getBusinessTitle() {
         return businessTitle;
@@ -65,6 +74,7 @@ public class UserDto {
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
+        user.setCity(city);
         user.setPhone(phone);
         user.setName(name);
         user.setBusinessTitle(businessTitle);

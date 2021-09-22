@@ -24,6 +24,9 @@ public class User {
 
     @Column
     private String phone;
+    
+    @Column
+    private String city;
 
     @Column
     private String name;
@@ -54,6 +57,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    
+    public void setCity(String city) {
+    	this.city = city;
+    }
+    
+    public String getCity() {
+    	return this.city;
     }
 
     public String getPassword() {

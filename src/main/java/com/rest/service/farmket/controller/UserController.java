@@ -8,6 +8,8 @@ import com.rest.service.farmket.model.User;
 import com.rest.service.farmket.model.dto.UserDto;
 import com.rest.service.farmket.service.ProductService;
 import com.rest.service.farmket.service.UserService;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +20,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -57,26 +61,36 @@ public class UserController {
     public User saveUser(@RequestBody UserDto user){
         return userService.save(user);
     }
-    @RequestMapping(value="/getId/{username}", method = RequestMethod.POST)
-    public Long getId(@PathVariable String username) {
+    @RequestMapping(value="/getId/{username}", method = RequestMethod.GET)
+    public Map<String, Long> getId(@PathVariable String username) {
     	User user  = new User();
     	user = userService.findOne(username);
-    	return user.getId();
+    	Long id = user.getId();
+    	Map<String, Long> map = new HashMap<>();
+    	map.put("id", id);
+    	return map;
     }
-    @RequestMapping(value="/getMarketName/{id}")
-    public String getMarketName(@PathVariable Long id) {
-    	return userService.getMarketName(id);
+    @RequestMapping(value="/getMarketName/{id}", method = RequestMethod.GET)
+    public Map<String, String> getMarketName(@PathVariable Long id) {
+    	//return  userService.getMarketName(id);
+    	String name =  userService.getMarketName(id);
+    	Map<String, String> map = new HashMap<>();
+    	map.put("name", name);
+   	return map;
     }
+    
     
   
-    @RequestMapping(value = "/getUserRole/{username}", method = RequestMethod.POST )
-    public String  getBusinessTitle(@PathVariable String username) {
+    @RequestMapping(value = "/getUserRole/{username}", method = RequestMethod.GET )
+    public Map<String, String>  getBusinessTitle(@PathVariable String username) {
     	User user  = new User();
     	user = userService.findOne(username);
-    	return user.getBusinessTitle();
+    	Map<String, String> map = new HashMap<>();
+    	map.put("role", user.getBusinessTitle());
+    	return map;
     }
     
-    @RequestMapping(value = "/getMarketList")
+    @RequestMapping(value = "/getMarketList", method = RequestMethod.GET)
     public List<User> getMarketDetails() {
     	return userService.getAllMarkets();
     }
