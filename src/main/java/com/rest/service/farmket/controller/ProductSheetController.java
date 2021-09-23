@@ -51,8 +51,9 @@ public class ProductSheetController {
 		 return map;
 	 }
 	 @RequestMapping(value = "/getBalance/{id}", method = RequestMethod.GET)
-	 public Wallet getBalance(Long id) {
+	 public Wallet  getBalance(@PathVariable Long id) {
 		 return productService.getBalance(id);
+		
 	 }
 	 @RequestMapping(value = "/saveBalance", method = RequestMethod.POST)
 	 public Map<String, String> saveBalance(@RequestBody Wallet wallet) {

@@ -12,6 +12,9 @@ public class Wallet {
 	private Long id;
 	private Long farmerId;
 	private Integer balance;
+	protected Wallet() {
+		
+	}
 	public Wallet(Long id, Long farmerId, Integer balance) {
 		super();
 		this.id = id;
